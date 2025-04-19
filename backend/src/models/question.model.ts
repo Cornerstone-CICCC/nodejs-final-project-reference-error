@@ -6,13 +6,14 @@ const prisma = new PrismaClient();
 export class QuestionModel {
   async createQuestion(question: CreateQuestion) {
     try {
+      const options = question.options.toString().split(",");
       const newQuestion = await prisma.question.create({
         data: {
           quizId: question.quizId,
           questionText: question.questionText,
-          options: question.options,
+          options: options,
           correctOption: question.correctOption,
-          points: question.points,
+          points: Number(question.points),
           picture: question.picture,
         },
       });
