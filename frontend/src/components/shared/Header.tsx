@@ -52,7 +52,7 @@ export function Header({ username, avatarImage }: HeaderProps) {
           <div className="flex items-center gap-10">
             <NavbarBrand as={Link} href="/">
               <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-                Quiz
+                Quizoo
               </span>
             </NavbarBrand>
 

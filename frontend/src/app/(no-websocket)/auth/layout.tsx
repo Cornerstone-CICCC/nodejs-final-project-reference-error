@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Quizoo",
+  description: "Real-time quiz app with a cute animals theme",
+};
+
 export default function AuthLayout({
   children,
 }: Readonly<{
