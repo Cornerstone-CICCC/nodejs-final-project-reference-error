@@ -47,21 +47,17 @@ export function QuestionDisplay({ question, unansweredCount }: QuestionDisplayPr
           <TimerContainer showResults={showResults} onTimeExpire={handleTimeExpire} />
         </div>
 
-        {question.picture ? (
-          <>
-            <div className="mb-4">
-              <SupabaseImage
-                fileName={question.picture}
-                width={300}
-                height={200}
-                alt="Question Image"
-              />
-            </div>
-            <h2 className="text-xl font-bold mb-6 text-center">{question.questionText}</h2>
-          </>
-        ) : (
-          <h2 className="grow text-xl font-bold mt-2 mb-6 text-center">{question.questionText}</h2>
+        {question.picture && (
+          <div className="mb-4">
+            <SupabaseImage
+              fileName={question.picture}
+              width={300}
+              height={200}
+              alt="Question Image"
+            />
+          </div>
         )}
+        <h2 className="grow text-xl font-bold mt-2 mb-6 text-center">{question.questionText}</h2>
 
         <AnswerButtons
           question={question}
@@ -77,7 +73,7 @@ export function QuestionDisplay({ question, unansweredCount }: QuestionDisplayPr
             </>
           )}
         </div>
-      </div>{" "}
+      </div>
       {quizState === QUIZ_STATES.RESULTS && showResults && (
         <RankingModal open={showRankingModal} questionTotal={questionTotal} />
       )}
