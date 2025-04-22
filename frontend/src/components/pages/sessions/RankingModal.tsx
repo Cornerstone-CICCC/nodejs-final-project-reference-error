@@ -1,6 +1,6 @@
 "use client";
 import { RankingList } from "@/components/pages/sessions/RankingList";
-import { useQuiz } from "@/stores/QuizStore";
+import { useQuiz } from "@/stores/quizStore";
 import { useEffect, useState } from "react";
 
 type RankingModalProps = {

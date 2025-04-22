@@ -1,4 +1,4 @@
-import type { Participant } from "@/types/Participant";
+import type { AnsweredParticipant, Participant } from "@/types/Participant";
 import { create } from "zustand";
 
 // ローカルストレージのキー
@@ -10,6 +10,7 @@ type ParticipantState = {
   sessionId: string | null;
   myParticipantId: string | null;
   answeredParticipantsCount: number;
+  answeredParticipants: AnsweredParticipant[];
 
   // アクション
   setParticipants: (participants: Participant[]) => void;
@@ -18,6 +19,9 @@ type ParticipantState = {
   setSessionId: (sessionId: string) => void;
   setMyParticipantId: (participantId: string) => void;
   setAnsweredParticipantsCount: (count: number) => void;
+  setAnsweredParticipants: (
+    updater: AnsweredParticipant[] | ((prev: AnsweredParticipant[]) => AnsweredParticipant[]),
+  ) => void;
   clearAll: () => void;
 };
 
@@ -43,6 +47,7 @@ export const useParticipantStore = create<ParticipantState>((set) => ({
   sessionId: initialState.sessionId,
   myParticipantId: initialState.myParticipantId,
   answeredParticipantsCount: 0,
+  answeredParticipants: [],
 
   setParticipants: (participants) => set({ participants }),
 
@@ -77,6 +82,13 @@ export const useParticipantStore = create<ParticipantState>((set) => ({
   },
 
   setAnsweredParticipantsCount: (count) => set({ answeredParticipantsCount: count }),
+
+  setAnsweredParticipants: (updater) =>
+    set((state) => {
+      const newAnsweredParticipants =
+        typeof updater === "function" ? updater(state.answeredParticipants) : updater;
+      return { answeredParticipants: newAnsweredParticipants };
+    }),
 
   clearAll: () => {
     // sessionStorage からも削除

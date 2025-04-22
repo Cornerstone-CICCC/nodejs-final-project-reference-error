@@ -26,14 +26,19 @@ export const webSocketAppEvents = {
 
   // セッション関連
   SESSION_JOIN_REQUEST: "session:join:request",
-  SESSION_LEAVE_REQUEST: "session:leave:request",
-
   SESSION_JOIN_SUCCESS: "session:join:success",
+
+  SESSION_LEAVE_REQUEST: "session:leave:request",
   SESSION_LEAVE_SUCCESS: "session:leave:success",
+
   SESSION_DATA: "session:data",
   SESSION_DATA_RESPONSE: "session:data:response",
+
   SESSION_CLOSE_REQUEST: "session:close:request",
   SESSION_CLOSE_SUCCESS: "session:close:success",
+
+  SESSION_CLEANUP_REQUEST: "session:cleanup:request",
+  SESSION_CLEANUP_DONE: "session:cleanup:done",
 
   // 参加者関連
   PARTICIPANT_JOINED: "participant:joined",
@@ -48,8 +53,13 @@ export const webSocketAppEvents = {
   QUIZ_NEXT_QUESTION: "quiz:next",
   QUIZ_SUBMIT_ANSWER: "quiz:submit",
   QUIZ_ANSWER_SUBMITTED: "quiz:answer:submitted",
+  QUIZ_QUESTION_UPDATE: "quiz:question:update",
   ANSWER_RESULT_TO_PARTICIPANTS: "quiz:answer:result:participants",
   ANSWER_RESULT_TO_HOST: "quiz:answer:result:host",
+  QUIZ_PAUSE_REQUEST: "quiz:pause:request",
+  QUIZ_PAUSED: "quiz:paused",
+  QUIZ_RESUME_REQUEST: "quiz:resume:request",
+  QUIZ_RESUMED: "quiz:resumed",
 
   QUIZ_SHOW_RESULTS: "quiz:show:results",
 
@@ -59,10 +69,6 @@ export const webSocketAppEvents = {
   // プレゼンス関連
   PRESENCE_UPDATE: "presence:update",
   PRESENCE_STATUS: "presence:status",
-
-  // タイムアウト関連
-  TIMEOUT_START: "timeout:start",
-  TIMEOUT_END: "timeout:end",
 
   // ルーム関連
   ROOM_JOIN: "room:join",

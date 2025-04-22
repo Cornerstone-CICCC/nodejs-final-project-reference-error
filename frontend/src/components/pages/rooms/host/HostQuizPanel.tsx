@@ -2,7 +2,7 @@
 import { RankingModal } from "@/components/pages/sessions/RankingModal";
 import { PushButton } from "@/components/ui/PushButton";
 import { QUIZ_STATES } from "@/constants/quizState";
-import { useQuiz } from "@/stores/QuizStore";
+import { useQuiz } from "@/stores/quizStore";
 import type { Question } from "@/types/Question";
 // import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -35,7 +35,7 @@ export function HostQuizPanel({ question, unansweredCount }: Props) {
     <div className="flex flex-col h-full gap-4">
       <HostQuizPanelHeader isPaused={isPaused} unansweredCount={unansweredCount} />
       <HostQuizPanelQuestion question={question} />
-      <HostQuizPanelParticipants isPaused={isPaused} question={question} />
+      <HostQuizPanelParticipants isPaused={isPaused} />
 
       <div className="flex gap-2 md:gap-4 mt-2 flex-shrink-0">
         <PushButton

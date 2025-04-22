@@ -1,23 +1,18 @@
 import { AnswerButtons } from "@/components/pages/sessions/AnswerButtons";
 import { RankingModal } from "@/components/pages/sessions/RankingModal";
+import SupabaseImage from "@/components/shared/SupabaseImage";
 import { QUIZ_STATES } from "@/constants/quizState";
-import { useQuiz } from "@/stores/QuizStore";
+import { useQuiz } from "@/stores/quizStore";
 import type { Question } from "@/types/Question";
-import type { QuestionResult } from "@/types/Result";
 import { useCallback, useState } from "react";
 import { TimerContainer } from "./Timer";
 
 type QuestionDisplayProps = {
   question: Question;
-  questionResult: QuestionResult | null;
   unansweredCount: number;
 };
 
-export function QuestionDisplay({
-  question,
-  questionResult,
-  unansweredCount,
-}: QuestionDisplayProps) {
+export function QuestionDisplay({ question, unansweredCount }: QuestionDisplayProps) {
   const {
     quizState,
     setQuizState,
@@ -51,14 +46,25 @@ export function QuestionDisplay({
         <div className="w-full mt-2 mb-6">
           <TimerContainer showResults={showResults} onTimeExpire={handleTimeExpire} />
         </div>
+
+        {question.picture && (
+          <div className="mb-4">
+            <SupabaseImage
+              fileName={question.picture}
+              width={300}
+              height={200}
+              alt="Question Image"
+            />
+          </div>
+        )}
         <h2 className="grow text-xl font-bold mt-2 mb-6 text-center">{question.questionText}</h2>
+
         <AnswerButtons
           question={question}
           onAnswer={(optionId) => {
             handleOptionClick(optionId);
           }}
           isAnswered={hasAnswered}
-          questionResult={questionResult}
         />
         <div className="mt-6 text-sm text-gray-500 h-[1rem] flex items-center justify-center">
           {!showResults && (

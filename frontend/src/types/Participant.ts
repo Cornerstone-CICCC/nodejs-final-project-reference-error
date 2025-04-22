@@ -12,3 +12,9 @@ export type Participant = {
   joinedAt: number;
   lastActive: number;
 };
+
+export type AnsweredParticipant = {
+  participantId: string;
+  answer: string;
+  isCorrect: boolean;
+};

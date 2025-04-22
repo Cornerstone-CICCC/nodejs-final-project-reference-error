@@ -4,9 +4,8 @@ import { HostWaitingRoom } from "@/components/pages/rooms/host/HostWaitingRoom";
 import { FinalResultDisplay } from "@/components/pages/sessions/FinalResultDisplay";
 import { FullHeightCardLayout } from "@/components/ui/FullHeightCardLayout";
 import { QUIZ_STATES } from "@/constants/quizState";
-import { useQuiz } from "@/stores/QuizStore";
 import { useParticipantStore } from "@/stores/participantStore";
-// TODO demo
+import { useQuiz } from "@/stores/quizStore";
 
 export default function RoomsHostPage() {
   const { quizState, currentQuestion } = useQuiz();

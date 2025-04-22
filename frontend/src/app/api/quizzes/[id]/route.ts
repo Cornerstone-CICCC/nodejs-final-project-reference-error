@@ -1,5 +1,5 @@
 // app/api/question/[id]/route.ts
-import QuizAdapters from "@/adapters/question/quizAdapter";
+import QuizAdapters from "@/adapters/quiz/quizAdapter";
 import { NextResponse } from "next/server";
 
 // biome-ignore lint/style/useNamingConvention: <explanation>

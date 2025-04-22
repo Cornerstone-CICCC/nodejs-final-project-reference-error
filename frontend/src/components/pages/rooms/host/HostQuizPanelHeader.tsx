@@ -1,5 +1,5 @@
-import { useQuiz } from "@/stores/QuizStore";
 import { useParticipantStore } from "@/stores/participantStore";
+import { useQuiz } from "@/stores/quizStore";
 
 type HostQuizPanelHeaderProps = {
   isPaused: boolean;
@@ -13,7 +13,7 @@ export function HostQuizPanelHeader({ isPaused, unansweredCount }: HostQuizPanel
   return (
     <div className="flex items-center justify-between relative">
       <div className="flex items-center">
-        <h2 className="text-2xl font-bold">Question {questionIndex}</h2>
+        <h2 className="text-2xl font-bold">Question {questionIndex + 1}</h2>
         {isPaused && <span className="text-red-600 font-semibold ml-3">Paused</span>}
       </div>
       <span className="text-sm text-gray-500">

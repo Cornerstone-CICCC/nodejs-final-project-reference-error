@@ -1,4 +1,4 @@
-import { useQuiz } from "@/stores/QuizStore";
+import { useQuiz } from "@/stores/quizStore";
 import { memo, useEffect, useRef } from "react";
 
 interface TimerProps {

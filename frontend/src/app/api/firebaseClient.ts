@@ -3,7 +3,6 @@
 import { type FirebaseApp, getApps, initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  // ここに Firebase コンソールからコピーした設定オブジェクトを貼り付けます
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
   // biome-ignore lint/style/useNamingConvention: <explanation>
@@ -12,7 +11,7 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_APP_ID,
-  measurementId: "G-BKNXHVYH2F",
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
 let firebaseApp: FirebaseApp = null as unknown as FirebaseApp;

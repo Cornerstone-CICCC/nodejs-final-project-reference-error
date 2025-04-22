@@ -3,7 +3,7 @@ import "../globals.css";
 import { ProtectedRoute } from "@/app/(no-websocket)/auth/hooks/ProtectedRoute";
 import { useAuthStore } from "@/app/(no-websocket)/auth/store/useAuthStore";
 import { WebSocketProvider } from "@/contexts/WebSocketContext";
-import { QuizProvider } from "@/stores/QuizStore";
+import { QuizProvider } from "@/stores/quizStore";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 

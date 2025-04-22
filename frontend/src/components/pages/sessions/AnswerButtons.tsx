@@ -1,19 +1,23 @@
 import AnswerPushButton from "@/components/pages/sessions/AnswerPushButton";
 import { QUIZ_STATES } from "@/constants/quizState";
-import { useQuiz } from "@/stores/QuizStore";
+import { useQuiz } from "@/stores/quizStore";
 import type { Question } from "@/types/Question";
-import type { QuestionResult } from "@/types/Result";
 
 type AnswerButtonsProps = {
   question: Question;
   onAnswer: (optionId: string) => void;
   isAnswered: boolean;
-  questionResult: QuestionResult | null;
-  // status: QuestionStatus;
 };
 
-export function AnswerButtons({ question, onAnswer, questionResult }: AnswerButtonsProps) {
-  const { currentQuestion, submitAnswer, hasAnswered, selectedAnswer, quizState } = useQuiz();
+export function AnswerButtons({ question, onAnswer }: AnswerButtonsProps) {
+  const {
+    currentQuestion,
+    submitAnswer,
+    hasAnswered,
+    selectedAnswer,
+    quizState,
+    optionDistribution,
+  } = useQuiz();
 
   const showResults = quizState === QUIZ_STATES.RESULTS;
   const isDisabled = hasAnswered || selectedAnswer !== null;
@@ -30,7 +34,7 @@ export function AnswerButtons({ question, onAnswer, questionResult }: AnswerButt
       {currentQuestion?.options.map((text, index) => {
         const isSelected = selectedAnswer === text;
         const isCorrect = question.correctOption === text;
-        const count = questionResult?.optionDistribution[text] ?? 0;
+        const count = optionDistribution[text] ?? 0;
 
         return (
           <AnswerPushButton
