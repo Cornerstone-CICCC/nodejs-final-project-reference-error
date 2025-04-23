@@ -1,55 +1,19 @@
-"use client";
 import "../globals.css";
-import { ProtectedRoute } from "@/app/(no-websocket)/auth/hooks/ProtectedRoute";
-import { useAuthStore } from "@/app/(no-websocket)/auth/store/useAuthStore";
-import { WebSocketProvider } from "@/contexts/WebSocketContext";
-import { QuizProvider } from "@/stores/quizStore";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import type { Metadata } from "next";
 
-function AuthProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const { checkAuth } = useAuthStore();
+export const metadata: Metadata = {
+  title: "Quizoo",
+  description: "Real-time quiz app with a cute animals theme",
+};
 
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
-
-  return <>{children}</>;
-}
-
-export default function ClientLayout({
+export function ClientLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const params = useParams();
-  const sessionId = typeof params?.sessionId === "string" ? params.sessionId : "";
-
-  const [hasHostString, setHasHostString] = useState(false);
-
-  const checkPathForHostString = () => {
-    const pathName = window.location.pathname;
-
-    const includesHost = pathName.includes("host");
-    return includesHost;
-  };
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    setHasHostString(checkPathForHostString());
-  }, []);
-
   return (
-    <AuthProvider>
-      <WebSocketProvider>
-        <QuizProvider sessionId={sessionId} isHost={hasHostString}>
-          <ProtectedRoute>{children}</ProtectedRoute>
-        </QuizProvider>
-      </WebSocketProvider>
-    </AuthProvider>
+    <html lang="en">
+      <body suppressHydrationWarning={true}>{children}</body>
+    </html>
   );
 }
